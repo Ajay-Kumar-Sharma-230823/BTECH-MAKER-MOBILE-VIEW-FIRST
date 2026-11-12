@@ -1,0 +1,627 @@
+/*
+  Responsive audit pass
+  ---------------------
+  This file deliberately loads last.  It only adjusts the layouts that become
+  constrained below the approved desktop canvas, leaving desktop styling intact.
+*/
+
+html,
+body,
+#root {
+  max-width: 100%;
+}
+
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+.resource-card,
+.company-card,
+.iit-card,
+.reference-card,
+.sih-presentation-card,
+.year-flip-card,
+.document-card,
+.guide-card,
+.prep-support-card {
+  min-width: 0;
+}
+
+.hero-rail,
+.hub-intro > div,
+.company-controls > div {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 1024px) {
+  .topbar-inner,
+  .hero-grid,
+  .container,
+  .hero-stats,
+  .hero-rail {
+    width: min(100% - 40px, 1370px);
+  }
+
+  .hero-dashboard-showcase .hero-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(30px, 5vw, 52px);
+  }
+
+  .hero-dashboard-showcase .hero-copy {
+    order: 1;
+    max-width: 680px;
+  }
+
+  .hero-showcase {
+    order: 2;
+    width: 100%;
+    max-width: 790px;
+    margin-inline: auto;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .topbar-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .menu-button {
+    display: inline-flex;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    z-index: 190;
+    inset: 0;
+    display: block;
+    padding: 20px;
+    background: var(--bg);
+  }
+
+  .mobile-menu-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-menu nav {
+    display: grid;
+    margin-top: 13px;
+  }
+
+  .mobile-menu nav button {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 18px;
+    align-items: center;
+    padding: 18px 3px;
+    color: var(--ink);
+    background: transparent;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .mobile-menu nav button span {
+    color: var(--quiet);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+  }
+
+  .hero-rail {
+    justify-content: flex-start;
+    overflow: auto;
+    padding-inline: 20px;
+    white-space: nowrap;
+  }
+
+  .section-heading {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .section-aside {
+    grid-column: 2;
+    padding-top: 0;
+  }
+
+  .section-number i {
+    height: 36px;
+  }
+
+  .academic-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .iit-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .company-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .company-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .company-controls small {
+    display: none;
+  }
+
+  .sih-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .sih-side {
+    display: none;
+  }
+
+  .yc-feature {
+    grid-template-columns: 74px minmax(0, 1fr);
+  }
+
+  .yc-feature .link-button {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  /* Tablets and phones use the button state instead of a persistent hover state. */
+  .year-flip-card:hover .year-flip-card-inner {
+    filter: none;
+    transform: none;
+  }
+
+  .year-flip-card:hover .year-flip-card-front {
+    pointer-events: auto;
+  }
+
+  .year-flip-card:hover .year-flip-card-back {
+    pointer-events: none;
+  }
+
+  .year-flip-card.is-flipped .year-flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .year-flip-card.is-flipped .year-flip-card-front {
+    pointer-events: none;
+  }
+
+  .year-flip-card.is-flipped .year-flip-card-back {
+    pointer-events: auto;
+  }
+
+  .section-heading,
+  .reference-preview-panel header,
+  .sih-presentations-subheading,
+  .pyq-library > header {
+    min-width: 0;
+  }
+
+  .footer-inner {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mobile-menu {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  .mobile-menu-bar {
+    position: sticky;
+    top: -20px;
+    z-index: 1;
+    padding-top: 20px;
+    background: var(--bg);
+  }
+
+  .mobile-menu nav button {
+    min-height: 54px;
+  }
+
+  .hero-rail,
+  .company-controls > div,
+  .hub-intro > div {
+    scroll-snap-type: x proximity;
+  }
+
+  .hero-rail > span,
+  .company-controls > div > button,
+  .hub-intro > div > b {
+    scroll-snap-align: start;
+  }
+
+  .footer-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-inner p {
+    max-width: 590px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 820px) {
+  .iit-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .iit-card {
+    min-height: 214px;
+  }
+
+  .iit-card .link-button {
+    min-height: 36px;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .topbar-inner,
+  .hero-grid,
+  .container,
+  .hero-stats,
+  .hero-rail {
+    width: calc(100% - 28px);
+  }
+
+  .topbar-actions {
+    gap: 5px;
+  }
+
+  .icon-button {
+    min-width: 32px;
+  }
+
+  .mobile-menu {
+    padding: 14px;
+  }
+
+  .mobile-menu-bar {
+    top: -14px;
+    padding-top: 14px;
+    padding-bottom: 18px;
+  }
+
+  .mobile-menu nav {
+    margin-top: 6px;
+  }
+
+  .mobile-menu nav button {
+    grid-template-columns: 30px minmax(0, 1fr) 18px;
+    padding: 14px 2px;
+    font-size: 14px;
+  }
+
+  .search-overlay {
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+
+  .search-box input {
+    min-width: 0;
+  }
+
+  .hero-dashboard-showcase .hero-grid {
+    gap: 25px;
+  }
+
+  .showcase-viewport,
+  .showcase-slide,
+  .showcase-board {
+    min-height: clamp(460px, 140vw, 545px);
+  }
+
+  .showcase-controls {
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .showcase-caption,
+  .showcase-indicators {
+    min-width: 0;
+  }
+
+  .showcase-caption b {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .showcase-indicators {
+    flex: 0 0 auto;
+  }
+
+  .hero-description {
+    max-width: 37rem;
+  }
+
+  .hero-buttons > span {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .hero-stats {
+    gap: 1px;
+  }
+
+  .hero-stat {
+    min-width: 0;
+  }
+
+  .hero-stat span {
+    max-width: none;
+  }
+
+  .hero-rail {
+    gap: 16px;
+    padding-inline: 14px;
+    scroll-padding-inline: 14px;
+  }
+
+  .hero-rail > span {
+    flex: 0 0 auto;
+  }
+
+  .section-heading {
+    display: block;
+    margin-bottom: 31px;
+  }
+
+  .section-number {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 14px;
+    padding: 0;
+  }
+
+  .section-number i {
+    width: 45px;
+    height: 1px;
+  }
+
+  .section-heading h2 {
+    overflow-wrap: anywhere;
+  }
+
+  .section-aside {
+    grid-column: auto;
+    margin-top: 13px;
+  }
+
+  .count-chip {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .resource-card {
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .resource-card-copy {
+    padding: 19px 0 13px;
+  }
+
+  .resource-card h3,
+  .company-copy h3,
+  .iit-card h3,
+  .document-card-copy h3,
+  .guide-card h3,
+  .prep-support-card h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .sih-feature {
+    min-height: 0;
+  }
+
+  .sih-content {
+    padding: 23px;
+  }
+
+  .sih-brand {
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  .sih-brand span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .sih-content h3 {
+    font-size: clamp(34px, 11vw, 40px);
+  }
+
+  .sih-presentations,
+  .reference-gallery--academic,
+  .recommendation-showcase {
+    border-radius: 11px;
+  }
+
+  .sih-presentation-actions {
+    gap: 6px;
+    padding-inline: 12px;
+  }
+
+  .presentation-action {
+    min-height: 38px;
+    padding-inline: 5px;
+  }
+
+  .year-card-back-header,
+  .year-subject-row {
+    min-width: 0;
+  }
+
+  .year-subject-row b {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .year-flip-note {
+    padding-inline: 8px;
+  }
+
+  .company-controls {
+    position: static;
+  }
+
+  .company-controls > div {
+    margin-inline: -2px;
+    padding-inline: 2px;
+    scroll-padding-inline: 2px;
+  }
+
+  .company-controls button {
+    min-height: 34px;
+  }
+
+  .iit-grid,
+  .company-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .iit-card {
+    min-height: 0;
+  }
+
+  .iit-card .link-button {
+    min-height: 36px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .hub-intro > div {
+    padding-bottom: 4px;
+  }
+
+  .document-library-header {
+    align-items: flex-start;
+  }
+
+  .document-library-header small {
+    line-height: 1.45;
+  }
+
+  .yc-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .yc-feature .link-button {
+    grid-column: auto;
+  }
+
+  .exam-feature-copy > div {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .exam-feature-copy > div > .library-action,
+  .exam-feature-copy > div > .link-button {
+    width: 100%;
+  }
+
+  .pyq-library > header {
+    gap: 13px;
+  }
+
+  .pyq-library-title > div {
+    min-width: 0;
+  }
+
+  .reference-preview-panel header > div:first-child {
+    min-width: 0;
+  }
+
+  .reference-preview-panel header h2 {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 390px) {
+  .brand {
+    gap: 7px;
+  }
+
+  .brand small {
+    letter-spacing: .065em;
+  }
+
+  .showcase-viewport,
+  .showcase-slide,
+  .showcase-board {
+    min-height: 460px;
+  }
+
+  .showcase-controls {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .showcase-indicators {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .showcase-indicators button.active i {
+    width: 26px;
+  }
+
+  .hero-stat {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .hero-stat b {
+    font-size: 27px;
+  }
+
+  .iit-grid,
+  .company-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sih-content {
+    padding: 19px;
+  }
+
+  .sih-brand .logo-mark {
+    width: 52px;
+    height: 52px;
+  }
+
+  .reference-preview-panel header {
+    align-items: flex-start;
+  }
+
+  .reference-preview-actions {
+    flex: 0 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rail,
+  .company-controls > div,
+  .hub-intro > div {
+    scroll-behavior: auto;
+  }
+}
